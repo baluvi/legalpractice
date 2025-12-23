@@ -3,92 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Журнал ведения дел - Dashboard</title>
-    
-    <!-- Подключаем стили -->
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Иконки FontAwesome -->
+    <title>Журнал ведения дел</title>
+    <link rel="stylesheet" href="styles/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
-        <div class="menu-btn"><i class="fa-solid fa-bars"></i></div>
+        <div class="sidebar__menu-btn"><i class="fa-solid fa-bars"></i></div>
         
-        <div class="nav-item">
-            <div class="nav-icon icon-blue" style="background: #D1E4F8; color: #4A90E2;"><i class="fa-solid fa-user"></i></div>
-            <div class="nav-label">Профиль</div>
-        </div>
+        <!-- Навигация с data-target для автоматической привязки -->
+        <nav class="sidebar__nav">
+            <div class="nav-item" data-target="profile">
+                <div class="nav-icon icon-blue" style="background: #D1E4F8; color: #4A90E2;"><i class="fa-solid fa-user"></i></div>
+                <div class="nav-label">Профиль</div>
+            </div>
 
-        <!-- КНОПКА 1: ДАШБОРД -->
-        <div class="nav-item active" id="nav-dashboard">
-            <div class="nav-icon"><i class="fa-solid fa-folder"></i></div>
-            <div class="nav-label">Журнал ведения дел</div>
-        </div>
+            <div class="nav-item active" data-target="dashboard">
+                <div class="nav-icon"><i class="fa-solid fa-folder"></i></div>
+                <div class="nav-label">Журнал ведения дел</div>
+            </div>
 
-        <!-- КНОПКА 2: РЕГИСТРАЦИЯ -->
-        <div class="nav-item" id="nav-registration">
-            <div class="nav-icon"><i class="fa-solid fa-table-cells-large"></i></div>
-            <div class="nav-label">Журнал регистрации...</div>
-        </div>
+            <div class="nav-item" data-target="registration">
+                <div class="nav-icon"><i class="fa-solid fa-table-cells-large"></i></div>
+                <div class="nav-label">Журнал регистрации...</div>
+            </div>
 
-        <div class="nav-item">
-            <div class="nav-icon icon-green"><i class="fa-solid fa-chart-column"></i></div>
-            <div class="nav-label">Отчеты</div>
+            <div class="nav-item" data-target="reports">
+                <div class="nav-icon icon-green"><i class="fa-solid fa-chart-column"></i></div>
+                <div class="nav-label">Отчеты</div>
+            </div>
+
+            <div class="nav-item" data-target="settings">
+                <div class="nav-icon icon-grey"><i class="fa-solid fa-gear"></i></div>
+                <div class="nav-label">Настройки</div>
+            </div>
+        </nav>
+
+        <div class="sidebar__footer">
+            <div class="nav-item sos-btn">SOS</div>
+            <div class="nav-label">Помощь</div>
         </div>
-        <div class="nav-item">
-            <div class="nav-icon icon-grey"><i class="fa-solid fa-gear"></i></div>
-            <div class="nav-label">Настройки</div>
-        </div>
-        <div class="nav-item sos-btn">SOS</div>
-        <div class="nav-label" style="margin-top: 5px;">Помощь</div>
     </aside>
 
     <!-- MAIN CONTENT -->
     <main class="main-content">
         
-        <!-- ========================================== -->
-        <!-- ЭКРАН 1: СПИСОК ДЕЛ (DASHBOARD)            -->
-        <!-- ========================================== -->
-        <div id="view-dashboard">
-            <h1><span>Логотип</span> | журнал ведения дел</h1>
+        <!-- VIEW: DASHBOARD -->
+        <section id="view-dashboard" class="view-section">
+            <header class="view-header">
+                <h1><span>Логотип</span> | Журнал ведения дел</h1>
+            </header>
 
             <div class="calendar-widget">
                 <div class="calendar-header">
-                    <div class="month-label">April 2025 <i class="fa-solid fa-chevron-right"></i></div>
+                    <div class="calendar-title js-month-label"></div>
                     <div class="calendar-controls">
-                        <i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-right"></i>
+                        <i class="fa-solid fa-chevron-left js-prev-month"></i>
+                        <i class="fa-solid fa-chevron-right js-next-month"></i>
                     </div>
                 </div>
-                <div class="calendar-grid">
-                    <div class="day-name">Sun</div> <div class="day-name">Mon</div> <div class="day-name">Wed</div> <div class="day-name">Thu</div> <div class="day-name">Fri</div> <div class="day-name">Sat</div> <div class="day-name">Sun</div>
-                    
-                    <div class="day-number"></div> <div class="day-number"></div> 
-                    <div class="day-number">1</div> <div class="day-number">2</div> <div class="day-number">3</div> <div class="day-number">4</div> <div class="day-number">5</div>
-                    <div class="day-number">6</div> <div class="day-number">7</div> <div class="day-number">8</div> <div class="day-number">9</div> <div class="day-number">10</div> <div class="day-number">11</div> <div class="day-number">12</div>
-                    <div class="day-number">13</div> <div class="day-number">14</div> <div class="day-number">15</div> <div class="day-number">16</div> <div class="day-number">17</div> <div class="day-number">18</div> <div class="day-number">19</div>
-                    <div class="day-number">20</div> <div class="day-number">21</div> <div class="day-number">22</div> <div class="day-number">23</div> <div class="day-number">24</div> <div class="day-number">25</div> <div class="day-number">26</div>
-                    <div class="day-number">27</div> <div class="day-number">28</div> <div class="day-number">29</div> <div class="day-number">30</div>
+                <div class="calendar-grid js-calendar-grid">
+                    <div class="day-name">Sun</div><div class="day-name">Mon</div><div class="day-name">Tue</div>
+                    <div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div>
+                    <div class="day-name">Sat</div>
                 </div>
                 <div class="calendar-footer">
                     <div class="event-chip">Консультация Иванов А. <span class="time-badge">9:41 AM</span></div>
                     <div class="event-chip">Заседание по делу №245 <span class="time-badge">2:30 PM</span></div>
-                    <div class="add-event-btn"><i class="fa-solid fa-plus"></i></div>
                 </div>
             </div>
 
-            <div class="bottom-section-wrapper">
+            <div class="content-wrapper">
                 <div class="section-header">
                     <div class="section-title">Юридические дела</div>
                     <div class="section-controls">
                         <span>текущие</span>
                         <i class="fa-solid fa-bars btn-icon"></i>
-                        <span id="add-case-btn" style="cursor: pointer;" title="Добавить дело"><i class="fa-solid fa-folder-plus btn-folder-add"></i></span>
+                        <button id="btn-add-case" class="btn-icon-add"><i class="fa-solid fa-folder-plus"></i></button>
                     </div>
                 </div>
-                <div class="cases-container" id="cases-list">
+                <div id="cases-list" class="cases-container">
+                    <!-- Карточка примера -->
                     <div class="case-card">
                         <div class="case-info">
                             <i class="fa-solid fa-folder folder-icon-large"></i>
@@ -98,37 +95,27 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- ========================================== -->
-        <!-- ЭКРАН 2: ДЕТАЛИ ДЕЛА                       -->
-        <!-- ========================================== -->
-        <div id="view-case-details" class="hidden">
-            <h1>
-                <i class="fa-solid fa-arrow-left back-btn" onclick="closeCaseDetails()" title="Назад"></i> 
-                <span>Логотип | журнал...</span> | Дело №245 - Иванов vs ООО "Росхозмета"
-            </h1>
+        <!-- VIEW: DETAILS -->
+        <section id="view-details" class="view-section hidden">
+            <header class="view-header">
+                <h1>
+                    <i class="fa-solid fa-arrow-left btn-back" id="btn-back-details" title="Назад"></i> 
+                    <span>Логотип | Журнал...</span> | Дело №245
+                </h1>
+            </header>
 
-            <div class="details-top-split">
+            <div class="split-layout">
                 <div class="calendar-widget">
                     <div class="calendar-header">
-                        <div class="month-label">April 2025 <i class="fa-solid fa-chevron-right"></i></div>
-                        <div class="calendar-controls"><i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-right"></i></div>
+                        <div class="calendar-title js-month-label"></div>
+                        <div class="calendar-controls"></div>
                     </div>
-                    <div class="calendar-grid">
-                        <div class="day-name">Sun</div> <div class="day-name">Mon</div> <div class="day-name">Wed</div> <div class="day-name">Thu</div> <div class="day-name">Fri</div> <div class="day-name">Sat</div> <div class="day-name">Sun</div>
-                        
-                        <div class="day-number"></div> <div class="day-number"></div> 
-                        <div class="day-number">1</div> <div class="day-number">2</div> <div class="day-number">3</div> <div class="day-number">4</div> <div class="day-number">5</div>
-                        <div class="day-number">6</div> <div class="day-number">7</div> <div class="day-number">8</div> <div class="day-number">9</div> <div class="day-number">10</div> <div class="day-number">11</div> <div class="day-number">12</div>
-                        <div class="day-number">13</div> <div class="day-number">14</div> <div class="day-number">15</div> <div class="day-number">16</div> <div class="day-number">17</div> <div class="day-number">18</div> <div class="day-number">19</div>
-                        <div class="day-number">20</div> <div class="day-number">21</div> <div class="day-number">22</div> <div class="day-number">23</div> <div class="day-number">24</div> <div class="day-number">25</div> <div class="day-number">26</div>
-                        <div class="day-number">27</div> <div class="day-number">28</div> <div class="day-number">29</div> <div class="day-number">30</div>
-                    </div>
-                    <div class="calendar-footer">
-                        <div class="event-chip">Консультация Иванов А. <span class="time-badge">9:41 AM</span></div>
-                        <div class="event-chip">Заседание по делу №245 <span class="time-badge">2:30 PM</span></div>
-                        <div class="add-event-btn"><i class="fa-solid fa-plus"></i></div>
+                    <div class="calendar-grid js-calendar-grid">
+                        <div class="day-name">Sun</div><div class="day-name">Mon</div><div class="day-name">Tue</div>
+                        <div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div>
+                        <div class="day-name">Sat</div>
                     </div>
                 </div>
 
@@ -139,7 +126,7 @@
                     </div>
                     <div class="info-block">
                         <h3>Ордера по делу <i class="fa-solid fa-bars"></i></h3>
-                        <div class="order-number">86734-Д7467 <i class="fa-solid fa-chevron-down" style="float:right; font-size: 12px;"></i></div>
+                        <div class="order-number">86734-Д7467</div>
                     </div>
                     <div class="info-block">
                         <h3>Информация <i class="fa-solid fa-plus"></i></h3>
@@ -154,57 +141,102 @@
                     <div class="section-controls">
                         <span>последние</span>
                         <i class="fa-solid fa-bars btn-icon"></i>
-                        <i class="fa-solid fa-folder-plus btn-folder-add"></i>
+                        <i class="fa-solid fa-folder-plus btn-icon-add"></i>
                     </div>
                 </div>
                 <div class="files-container">
                     <div class="file-folder"><i class="fa-regular fa-folder"></i><span>Данные<br>Иванова</span></div>
-                    <div class="file-folder" style="margin-top: 40px;"><i class="fa-regular fa-folder"></i><span>Данные по<br>росхозмета</span></div>
                     <div class="file-folder"><i class="fa-regular fa-folder"></i><span>Судебные</span></div>
-                    <div class="file-folder" style="margin-top: 30px; margin-left: auto;"><i class="fa-regular fa-folder"></i><span>Не<br>рассмотренные</span></div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- ========================================== -->
-        <!-- ЭКРАН 3: ЖУРНАЛ РЕГИСТРАЦИИ                -->
-        <!-- ========================================== -->
-        <div id="view-registration" class="hidden">
-            <h1><span>Логотип</span> | Журнал регистрации адвокатских соглашений</h1>
-
+        <!-- VIEW: REGISTRATION -->
+        <section id="view-registration" class="view-section hidden">
+            <header class="view-header">
+                <h1><span>Логотип</span> | Журнал регистрации</h1>
+            </header>
             <div class="registration-wrapper">
                 <div class="table-scroll-container">
                     <table class="reg-table" id="reg-table">
                         <thead>
                             <tr>
-                                <th style="width: 50px;">N<br>п/п</th>
-                                <th>Регистрационный<br>номер, дата<br>регистрации</th>
-                                <th>Предмет поручения</th>
-                                <th>Дата<br>заключения<br>соглашения</th>
-                                <th>Наименование или<br>ФИО лица, обратившегося<br>за юридической помощью,<br>адрес</th>
-                                <th>ФИО адвоката,<br>заключившего<br>соглашение</th>
-                                <th>Отметка об<br>исполнении</th>
-                            </tr>
-                            <tr class="number-row">
-                                <th>1</th>
-                                <th>2</th>
-                                <th>3</th>
-                                <th>4</th>
-                                <th>5</th>
-                                <th>6</th>
-                                <th>7</th>
+                                <th style="width:50px">N</th>
+                                <th>Рег. номер</th>
+                                <th>Предмет</th>
+                                <th>Дата</th>
+                                <th>ФИО доверителя</th>
+                                <th>ФИО адвоката</th>
+                                <th>Исполнение</th>
+                                <th>Ордера</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <!-- Здесь будут строки таблицы -->
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
-                <div class="add-row-btn-container">
-                    <i class="fa-solid fa-plus" id="add-reg-row-btn"></i>
+                <div class="add-row-container">
+                    <button id="btn-add-reg-row" class="btn-icon-lg"><i class="fa-solid fa-plus"></i></button>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- VIEW: PROFILE -->
+        <section id="view-profile" class="view-section hidden">
+            <header class="view-header">
+                <h1><span>Логотип</span> | Профиль</h1>
+            </header>
+            <div class="center-content">
+                <div class="card-box profile-card">
+                    <div class="profile-avatar"><i class="fa-solid fa-user-large"></i></div>
+                    <h2>Иван Иванов</h2>
+                    <p class="text-muted">Адвокат</p>
+                    <button class="btn-primary">Редактировать</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: REPORTS -->
+        <section id="view-reports" class="view-section hidden">
+            <header class="view-header">
+                <h1><span>Логотип</span> | Отчеты</h1>
+            </header>
+            <div class="center-content column-gap">
+                <div class="card-box report-item">
+                    <div class="report-icon"><i class="fa-solid fa-file-chart-column"></i></div>
+                    <div class="report-info"><h3>Годовой отчет</h3></div>
+                    <button class="btn-primary">Скачать</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: SETTINGS -->
+        <section id="view-settings" class="view-section hidden">
+            <header class="view-header">
+                <h1><span>Логотип</span> | Настройки</h1>
+            </header>
+            <div class="card-box settings-container">
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>Темная тема</h3>
+                        <p>Переключить интерфейс в ночной режим</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>Язык</h3>
+                        <p>Язык интерфейса системы</p>
+                    </div>
+                    <select class="select-input">
+                        <option>Русский</option>
+                        <option>English</option>
+                    </select>
+                </div>
+            </div>
+        </section>
 
     </main>
 
