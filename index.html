@@ -8,7 +8,38 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-
+    <section id="view-auth" class="view-section auth-screen">
+        <div class="card-box auth-card">
+            <header class="auth-header">
+                <div class="logo-circle"><i class="fa-solid fa-scale-balanced"></i></div>
+                <h2>Регистрация в системе</h2>
+                <p class="text-muted">Введите данные для начала работы</p>
+            </header>
+            <form id="registration-form">
+                <div class="form-group">
+                    <label>ФИО</label>
+                    <input type="text" id="reg-name" class="input-field" placeholder="Иванов Иван Иванович" required>
+                </div>
+                <div class="form-group">
+                    <label>Номер удостоверения</label>
+                    <input type="text" id="reg-license" class="input-field" placeholder="77/1234" required>
+                </div>
+                <div class="form-group">
+                    <label>Специализация</label>
+                    <select id="reg-spec" class="input-field">
+                        <option value="Гражданское право">Гражданское право</option>
+                        <option value="Уголовное право">Уголовное право</option>
+                        <option value="Арбитраж">Арбитраж</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="reg-email" class="input-field" placeholder="lawyer@example.com" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Зарегистрироваться</button>
+            </form>
+        </div>
+    </section>
     <!-- SIDEBAR (ASIDE) -->
     <aside class="sidebar">
         <div class="sidebar__menu-btn"><i class="fa-solid fa-bars"></i></div>
@@ -245,9 +276,23 @@
             <div class="center-content">
                 <article class="card-box profile-card">
                     <div class="profile-avatar"><i class="fa-solid fa-user-large"></i></div>
-                    <h2>Иван Иванов</h2>
-                    <p class="text-muted">Адвокат</p>
-                    <button class="btn-primary">Редактировать</button>
+                    <h2 id="profile-display-name">Загрузка...</h2>
+                    <p id="profile-display-spec" class="text-muted">Адвокат</p>
+                    
+                    <div class="profile-details" style="text-align: left; margin: 20px 0; border-top: 1px solid var(--border); padding-top: 20px;">
+                        <div class="info-block">
+                            <label style="font-size: 11px; color: var(--text-muted);">Удостоверение:</label>
+                            <p id="profile-display-license" style="font-weight: 500;">-</p>
+                        </div>
+                        <div class="info-block" style="margin-top: 10px;">
+                            <label style="font-size: 11px; color: var(--text-muted);">Email:</label>
+                            <p id="profile-display-email" style="font-weight: 500;">-</p>
+                        </div>
+                    </div>
+
+                    <button id="btn-reset-system" class="btn-danger" style="width: 100%; background-color: #ff52521a; color: #ff5252; border: 1px solid #ff5252;">
+                        <i class="fa-solid fa-trash-can"></i> Сбросить все данные
+                    </button>
                 </article>
             </div>
         </section>
@@ -305,6 +350,7 @@
     <script src="js/registration.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
     <!-- MODAL FOR EVENTS -->
     <div id="event-modal" class="modal-overlay hidden">
         <div class="modal-content">

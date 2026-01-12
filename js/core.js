@@ -6,6 +6,8 @@ const App = {
         
         // ВАЖНО: Выбранная дата по умолчанию - Сегодня
         selectedDate: new Date(), 
+
+        user: JSON.parse(localStorage.getItem('legalAppUser')) || null,
         
         events: JSON.parse(localStorage.getItem('legalAppEvents')) || {},
         cases: JSON.parse(localStorage.getItem('legalAppCases')) || [ /* ... */ ],
@@ -41,6 +43,7 @@ const App = {
         if(this.Cases) this.Cases.renderDetails();
     },
     init() {
+        if (this.Auth) this.Auth.init();
         if(this.Navigation) this.Navigation.init();
         if(this.Calendar) this.Calendar.init();
         if(this.Cases) this.Cases.init();
