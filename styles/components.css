@@ -338,3 +338,60 @@ input:checked + .slider:before { transform: translateX(26px); }
 .remove-file-icon:hover {
     transform: scale(1.2); /* Легкое увеличение при наведении на сам крестик */
 }
+
+
+/* Центрирование экрана регистрации */
+.auth-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-main);
+    padding: 20px;
+}
+
+/* Сужение карточки и внутренние отступы */
+.auth-card {
+    width: 100%;
+    max-width: 400px; /* Делаем узким как на фото */
+    padding: 40px 30px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-header .logo-circle {
+    width: 60px;
+    height: 60px;
+    background: var(--calendar-highlight);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin: 0 auto 15px;
+}
+
+/* Неактивная кнопка Войти */
+.btn-secondary-disabled {
+    width: 100%;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 15px;
+    cursor: not-allowed;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.auth-footer {
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+    padding-top: 10px;
+}

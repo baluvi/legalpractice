@@ -30,9 +30,16 @@ App.Auth = {
     },
 
     register() {
+        const pass = document.getElementById('reg-password').value;
+        const confirmPass = document.getElementById('reg-password-confirm').value;
+
+        if (pass !== confirmPass) {
+            alert('Пароли не совпадают!');
+            return;
+        }
+
         const userData = {
             name: document.getElementById('reg-name').value,
-            license: document.getElementById('reg-license').value,
             spec: document.getElementById('reg-spec').value,
             email: document.getElementById('reg-email').value,
             regDate: new Date().toLocaleDateString()
@@ -70,12 +77,15 @@ App.Auth = {
         const user = App.state.user;
         if (!user) return;
 
-        document.getElementById('profile-display-name').innerText = user.name;
-        document.getElementById('profile-display-spec').innerText = user.spec;
-        document.getElementById('profile-display-license').innerText = user.license;
-        document.getElementById('profile-display-email').innerText = user.email;
+        if(document.getElementById('profile-display-name')) 
+            document.getElementById('profile-display-name').innerText = user.name;
+        if(document.getElementById('profile-display-spec')) 
+            document.getElementById('profile-display-spec').innerText = user.spec;
+        if(document.getElementById('profile-display-email')) 
+            document.getElementById('profile-display-email').innerText = user.email;
     },
 
+    // костыль, позже убрать
     resetSystem() {
         if (confirm('ВНИМАНИЕ! Это действие удалит ВСЕ ваши дела, заметки и данные профиля. Продолжить?')) {
             localStorage.clear();

@@ -12,17 +12,13 @@
         <div class="card-box auth-card">
             <header class="auth-header">
                 <div class="logo-circle"><i class="fa-solid fa-scale-balanced"></i></div>
-                <h2>Регистрация в системе</h2>
-                <p class="text-muted">Введите данные для начала работы</p>
+                <h2>Регистрация</h2>
+                <p class="text-muted">Создайте аккаунт для работы</p>
             </header>
             <form id="registration-form">
                 <div class="form-group">
                     <label>ФИО</label>
                     <input type="text" id="reg-name" class="input-field" placeholder="Иванов Иван Иванович" required>
-                </div>
-                <div class="form-group">
-                    <label>Номер удостоверения</label>
-                    <input type="text" id="reg-license" class="input-field" placeholder="77/1234" required>
                 </div>
                 <div class="form-group">
                     <label>Специализация</label>
@@ -36,7 +32,20 @@
                     <label>Email</label>
                     <input type="email" id="reg-email" class="input-field" placeholder="lawyer@example.com" required>
                 </div>
+                <div class="form-group">
+                    <label>Введите пароль</label>
+                    <input type="password" id="reg-password" class="input-field" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label>Повторите пароль</label>
+                    <input type="password" id="reg-password-confirm" class="input-field" placeholder="••••••••" required>
+                </div>
+                
                 <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Зарегистрироваться</button>
+                
+                <div class="auth-footer">
+                    <button type="button" class="btn-secondary-disabled" disabled>Уже есть аккаунт? Войти</button>
+                </div>
             </form>
         </div>
     </section>
@@ -281,10 +290,6 @@
                     <p id="profile-display-spec" class="text-muted">Адвокат</p>
                     
                     <div class="profile-details" style="text-align: left; margin: 20px 0; border-top: 1px solid var(--border); padding-top: 20px;">
-                        <div class="info-block">
-                            <label style="font-size: 11px; color: var(--text-muted);">Удостоверение:</label>
-                            <p id="profile-display-license" style="font-weight: 500;">-</p>
-                        </div>
                         <div class="info-block" style="margin-top: 10px;">
                             <label style="font-size: 11px; color: var(--text-muted);">Email:</label>
                             <p id="profile-display-email" style="font-weight: 500;">-</p>
