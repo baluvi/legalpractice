@@ -9,11 +9,11 @@
 </head>
 <body>
 
-    <!-- SIDEBAR -->
+    <!-- SIDEBAR (ASIDE) -->
     <aside class="sidebar">
         <div class="sidebar__menu-btn"><i class="fa-solid fa-bars"></i></div>
         
-        <!-- Навигация с data-target для автоматической привязки -->
+        <!-- NAVIGATION (NAV) -->
         <nav class="sidebar__nav">
             <div class="nav-item" data-target="profile">
                 <div class="nav-icon icon-blue" style="background: #D1E4F8; color: #4A90E2;"><i class="fa-solid fa-user"></i></div>
@@ -27,7 +27,7 @@
 
             <div class="nav-item" data-target="registration">
                 <div class="nav-icon"><i class="fa-solid fa-table-cells-large"></i></div>
-                <div class="nav-label">Журнал регистрации...</div>
+                <div class="nav-label">Журнал регистрации</div>
             </div>
 
             <div class="nav-item" data-target="reports">
@@ -41,16 +41,17 @@
             </div>
         </nav>
 
-        <div class="sidebar__footer">
+        <!-- FOOTER (SIDEBAR FOOTER) -->
+        <footer class="sidebar__footer">
             <div class="nav-item sos-btn">SOS</div>
             <div class="nav-label">Помощь</div>
-        </div>
+        </footer>
     </aside>
 
-    <!-- MAIN CONTENT -->
+    <!-- MAIN CONTENT (MAIN) -->
     <main class="main-content">
         
-        <!-- VIEW: DASHBOARD -->
+        <!-- SECTION: DASHBOARD -->
         <section id="view-dashboard" class="view-section">
             <header class="view-header">
                 <h1><span>Логотип</span> | Журнал ведения дел</h1>
@@ -76,28 +77,28 @@
             </div>
 
             <div class="content-wrapper">
-                <div class="section-header">
+                <header class="section-header">
                     <div class="section-title">Юридические дела</div>
                     <div class="section-controls">
                         <span>текущие</span>
                         <i class="fa-solid fa-bars btn-icon"></i>
                         <button id="btn-add-case" class="btn-icon-add"><i class="fa-solid fa-folder-plus"></i></button>
                     </div>
-                </div>
+                </header>
                 <div id="cases-list" class="cases-container">
                     <!-- Карточка примера -->
-                    <div class="case-card">
+                    <article class="case-card">
                         <div class="case-info">
                             <i class="fa-solid fa-folder folder-icon-large"></i>
                             <div class="case-title">Дело №245 - Иванов vs ООО <br> "Росхозмета"</div>
                         </div>
                         <div class="case-menu"><i class="fa-solid fa-bars"></i></div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- VIEW: DETAILS -->
+        <!-- SECTION: DETAILS -->
         <section id="view-details" class="view-section hidden">
             <header class="view-header">
                 <h1>
@@ -119,7 +120,7 @@
                     </div>
                 </div>
 
-                <div class="info-panel">
+                <article class="info-panel">
                     <div class="info-block">
                         <h3>Трекинг дела <i class="fa-solid fa-bars"></i></h3>
                         <a href="#" class="info-link">www.sudact.ru/kem/len_ar/245...</a>
@@ -132,18 +133,18 @@
                         <h3>Информация <i class="fa-solid fa-plus"></i></h3>
                         <p class="info-text">тел Иванов +7 984 344 34-44.<br>адр прокур ул. Ленина, 45, 203</p>
                     </div>
-                </div>
+                </article>
             </div>
 
             <div class="files-section">
-                <div class="section-header">
+                <header class="section-header">
                     <div class="section-title">Приложения, файлы по делу</div>
                     <div class="section-controls">
                         <span>последние</span>
                         <i class="fa-solid fa-bars btn-icon"></i>
                         <i class="fa-solid fa-folder-plus btn-icon-add"></i>
                     </div>
-                </div>
+                </header>
                 <div class="files-container">
                     <div class="file-folder"><i class="fa-regular fa-folder"></i><span>Данные<br>Иванова</span></div>
                     <div class="file-folder"><i class="fa-regular fa-folder"></i><span>Судебные</span></div>
@@ -151,7 +152,7 @@
             </div>
         </section>
 
-        <!-- VIEW: REGISTRATION -->
+        <!-- SECTION: REGISTRATION -->
         <section id="view-registration" class="view-section hidden">
             <header class="view-header">
                 <h1><span>Логотип</span> | Журнал регистрации</h1>
@@ -180,36 +181,36 @@
             </div>
         </section>
 
-        <!-- VIEW: PROFILE -->
+        <!-- SECTION: PROFILE -->
         <section id="view-profile" class="view-section hidden">
             <header class="view-header">
                 <h1><span>Логотип</span> | Профиль</h1>
             </header>
             <div class="center-content">
-                <div class="card-box profile-card">
+                <article class="card-box profile-card">
                     <div class="profile-avatar"><i class="fa-solid fa-user-large"></i></div>
                     <h2>Иван Иванов</h2>
                     <p class="text-muted">Адвокат</p>
                     <button class="btn-primary">Редактировать</button>
-                </div>
+                </article>
             </div>
         </section>
 
-        <!-- VIEW: REPORTS -->
+        <!-- SECTION: REPORTS -->
         <section id="view-reports" class="view-section hidden">
             <header class="view-header">
                 <h1><span>Логотип</span> | Отчеты</h1>
             </header>
             <div class="center-content column-gap">
-                <div class="card-box report-item">
+                <article class="card-box report-item">
                     <div class="report-icon"><i class="fa-solid fa-file-chart-column"></i></div>
                     <div class="report-info"><h3>Годовой отчет</h3></div>
                     <button class="btn-primary">Скачать</button>
-                </div>
+                </article>
             </div>
         </section>
 
-        <!-- VIEW: SETTINGS -->
+        <!-- SECTION: SETTINGS -->
         <section id="view-settings" class="view-section hidden">
             <header class="view-header">
                 <h1><span>Логотип</span> | Настройки</h1>
@@ -240,6 +241,13 @@
 
     </main>
 
-    <script src="script.js"></script>
+    <!-- JS MODULES -->
+    <script src="js/core.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/cases.js"></script>
+    <script src="js/registration.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

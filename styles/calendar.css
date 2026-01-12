@@ -1,0 +1,47 @@
+/* ВИДЖЕТ КАЛЕНДАРЯ */
+.calendar-widget {
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 5px 25px var(--shadow);
+    margin-bottom: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    transition: background-color 0.3s;
+}
+
+/* Детали view */
+.split-layout .calendar-widget { flex: 2; margin-bottom: 0; min-width: 300px; height: auto; }
+
+.calendar-header { display: flex; justify-content: space-between; margin-bottom: 15px; align-items: center; flex-shrink: 0; }
+.calendar-title { font-weight: 700; font-size: 16px; color: var(--text-main); }
+.calendar-controls i { margin-left: 15px; color: var(--accent); cursor: pointer; }
+
+.calendar-grid {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 30px repeat(6, 1fr);
+    gap: 6px;
+}
+
+.day-name { font-size: 11px; color: var(--text-muted); text-transform: uppercase; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+.day-number {
+    background-color: var(--bg-input);
+    color: var(--text-main);
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: clamp(14px, 1.5vh + 0.5vw, 24px);
+    cursor: pointer;
+    transition: 0.2s;
+    border-radius: 12px;
+}
+.day-number:hover:not(:empty) { filter: brightness(0.95); transform: scale(0.95); }
+.day-number:empty { visibility: hidden; pointer-events: none; }
+.day-number.selected { background-color: var(--calendar-highlight) !important; color: white !important; font-weight: bold; }
+
+.calendar-footer { margin-top: 15px; display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
+.event-chip { font-size: 13px; color: var(--text-main); }
+.time-badge { background-color: var(--calendar-highlight) !important; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; color: white !important;; margin-left: 5px; font-weight: bold;}
