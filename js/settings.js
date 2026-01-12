@@ -90,16 +90,24 @@ App.Settings = {
     },
 
     changeFontSize(delta) {
-        let currentSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--main-font-size'));
-        let newSize = currentSize + delta;
+        // Читаем текущий коэффициент (из переменной или из памяти)
+        let currentScale = parseFloat(localStorage.getItem('settings_font_scale')) || 1.0;
         
-        // Ограничения
-        if (newSize < 12) newSize = 12;
-        if (newSize > 24) newSize = 24;
+        // Изменяем на 0.1 (на 10% за клик)
+        let newScale = currentScale + (delta * 0.1);
 
-        document.documentElement.style.setProperty('--main-font-size', newSize + 'px');
-        document.getElementById('font-size-value').innerText = newSize + 'px';
-        localStorage.setItem('settings_font_size', newSize);
+        // Ограничения (от 0.7 до 1.5)
+        if (newScale < 0.7) newScale = 0.7;
+        if (newScale > 1.5) newScale = 1.5;
+
+        // Применяем к документу
+        document.documentElement.style.setProperty('--font-scale', newScale);
+        
+        // Обновляем текст (показываем проценты)
+        document.getElementById('font-size-value').innerText = Math.round(newScale * 100) + '%';
+        
+        // Сохраняем
+        localStorage.setItem('settings_font_scale', newScale);
     },
 
     loadSettings() {
@@ -117,5 +125,9 @@ App.Settings = {
         const fontSize = localStorage.getItem('settings_font_size') || '16';
         document.documentElement.style.setProperty('--main-font-size', fontSize + 'px');
         document.getElementById('font-size-value').innerText = fontSize + 'px';
+
+        const fontScale = localStorage.getItem('settings_font_scale') || '1.0';
+        document.documentElement.style.setProperty('--font-scale', fontScale);
+        document.getElementById('font-size-value').innerText = Math.round(fontScale * 100) + '%';
     }
 };
