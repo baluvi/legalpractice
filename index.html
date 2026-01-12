@@ -6,6 +6,7 @@
     <title>Журнал ведения дел</title>
     <link rel="stylesheet" href="styles/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <section id="view-auth" class="view-section auth-screen">
@@ -306,12 +307,25 @@
         <!-- SECTION: REPORTS -->
         <section id="view-reports" class="view-section hidden">
             <header class="view-header">
-                <h1><div class="app-logo"><i class="fa-solid fa-scale-balanced"></i></div> | Отчеты</h1>
+                <h1><span>LOGO</span> | <span data-i18n="menu_reports">Отчеты</span></h1>
             </header>
-            <div class="center-content column-gap">
-                <article class="card-box report-item">
-                    <div class="report-icon"><i class="fa-solid fa-file-chart-column"></i></div>
-                </article>
+            
+            <div class="reports-container">
+                <!-- Диаграмма -->
+                <div class="chart-box card-box">
+                    <h3 data-i18n="report_stat_title">Статистика по статусам</h3>
+                    <div class="canvas-wrapper">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Список дел при наведении -->
+                <div class="status-details card-box" id="status-details-panel">
+                    <h3 id="detail-status-title" data-i18n="report_details_title">Наведите на диаграмму</h3>
+                    <div id="status-cases-list" class="details-list">
+                        <!-- Сюда JS вставит список названий дел бичч-->
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -379,6 +393,7 @@
     <script src="js/cases.js"></script>
     <script src="js/registration.js"></script>
     <script src="js/settings.js"></script>
+    <script src="js/reports.js"></script>
     <script src="js/main.js"></script>
     <script src="js/auth.js"></script>
     <!-- MODAL FOR EVENTS -->

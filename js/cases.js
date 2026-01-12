@@ -249,6 +249,9 @@ App.Cases = {
         App.saveCases();
         this.renderDetails();
         this.renderCaseList();
+
+        if (App.Reports) App.Reports.render(); 
+        
         this.closeModal();
     }
 };

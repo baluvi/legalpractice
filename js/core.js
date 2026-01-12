@@ -47,10 +47,15 @@ const App = {
         if(this.Navigation) this.Navigation.init();
         if(this.Calendar) this.Calendar.init();
         if(this.Cases) this.Cases.init();
+        if (this.Reports) this.Reports.init();
         if(this.Registration) this.Registration.init();
         if(this.Settings) this.Settings.init();
         // Инициализация модуля событий
         if(this.Events) this.Events.init();
         
+    },
+
+    saveCases() {
+        localStorage.setItem('legalAppCases', JSON.stringify(this.state.cases));
     }
 };

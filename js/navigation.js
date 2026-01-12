@@ -30,6 +30,10 @@ App.Navigation = {
         const targetView = document.getElementById(`view-${targetId}`);
         if (targetView) targetView.classList.remove('hidden');
 
+        if (targetId === 'reports') {
+            App.Reports.render(); 
+        }
+
         // Set active nav
         const targetNav = document.querySelector(`.nav-item[data-target="${targetId}"]`);
         if (targetNav) targetNav.classList.add('active');
