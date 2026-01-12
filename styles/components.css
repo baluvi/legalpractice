@@ -34,7 +34,7 @@
 .case-card { background-color: var(--bg-card-dark); color: var(--text-inverse); border-radius: 15px; padding: 20px 30px; display: flex; justify-content: space-between; margin-bottom: 15px; cursor: pointer; transition: 0.2s; align-items: center; }
 .case-card:hover { transform: scale(1.01); }
 .case-info { display: flex; align-items: center; gap: 20px; }
-.folder-icon-large { font-size: 40px; color: var(--text-muted); }
+.folder-icon-large { font-size: 40px; color: var(--text-inverse); }
 .order-chip {
     background: var(--bg-input);
     padding: 5px 10px;
@@ -482,6 +482,5 @@ input:checked + .slider:before { transform: translateX(26px); }
 
 /* Навигация */
 .icon-profile {
-    background-color: var(--nav-icon-blue-bg) !important;
-    color: var(--nav-icon-blue) !important;
+    color: var(--text-muted); 
 }

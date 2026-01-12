@@ -34,7 +34,7 @@
 
 .calendar-controls i { 
     margin-left: 15px; 
-    color: var(--accent); 
+    color: var(--calendar-highlight); 
     cursor: pointer; 
     transition: 0.2s;
 }
