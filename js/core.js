@@ -21,6 +21,6 @@ const App = {
         if(this.Calendar) this.Calendar.init();
         if(this.Cases) this.Cases.init();
         if(this.Registration) this.Registration.init();
-        if(this.Theme) this.Theme.init();
+        if(this.Settings) this.Settings.init();
     }
 };

@@ -19,6 +19,18 @@
     
     --icon-active: #6A5B75;
     --calendar-highlight: #ba68c8;
+
+    --main-font-size: 16px; /* Базовый размер */
+}
+
+html {
+    font-size: var(--main-font-size);
+}
+
+body {
+    /* Теперь все шрифты, если они заданы в rem или не имеют жесткой фиксации в px, 
+       будут масштабироваться от html */
+    font-size: 1rem; 
 }
 
 body.dark-mode {
