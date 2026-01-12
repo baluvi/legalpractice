@@ -18,6 +18,7 @@
     
     /* --- Акценты и Кнопки --- */
     --accent: #ba68c8;
+    --avatar-blue: #64b5f6;
     --accent-bg: #E3F2FD;
     --calendar-highlight: #ba68c8;
     --icon-active: #6A5B75;
@@ -54,7 +55,7 @@
     --status-appeal-text: #e65100;
     --status-appeal-border: #ffe0b2;
 
-    --main-font-size: 16px;
+    --main-font-size: calc(16px * 1);
 }
 
 body.dark-mode {
