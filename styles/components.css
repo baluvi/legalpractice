@@ -49,6 +49,8 @@
 .file-folder i { font-size: 50px; color: var(--text-main); margin-bottom: 10px; -webkit-text-stroke: 1px var(--text-main); color: transparent; }
 .file-folder span { font-size: 14px; font-weight: 500; color: var(--text-main); }
 
+
+
 /* Таблицы (Регистрация) */
 .registration-wrapper { background-color: var(--bg-card); border-radius: 20px; padding: 20px; flex-grow: 1; margin-bottom: 20px; display: flex; flex-direction: column; overflow-y: hidden; overflow-x: hidden; }
 .table-scroll-container { flex-grow: 1; overflow: auto; }
@@ -56,6 +58,52 @@
 .reg-table th, .reg-table td { padding: 10px; text-align: center; color: var(--text-main); border-bottom: 1px solid var(--border); }
 .reg-table th { font-weight: 500; }
 .add-row-container { margin-top: 15px; padding-left: 15px; }
+/* Фиксируем таблицу и разрешаем перенос слов */
+.reg-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Важно: колонки не растягиваются от контента */
+    min-width: 900px;
+}
+
+.reg-table td {
+    padding: 10px;
+    text-align: left;
+    color: var(--text-main);
+    border-bottom: 1px solid var(--border);
+    word-wrap: break-word; /* Перенос длинных слов */
+    overflow-wrap: break-word;
+    vertical-align: middle;
+}
+
+/* Стили для кнопки удаления */
+.btn-delete-row {
+    background: transparent;
+    border: none;
+    color: #ff4d4d;
+    cursor: pointer;
+    opacity: 0; /* Скрыта по умолчанию */
+    transition: opacity 0.2s;
+    font-size: 1.1rem;
+}
+
+.reg-table tr:hover .btn-delete-row {
+    opacity: 1; /* Показываем при наведении на строку */
+}
+
+.btn-delete-row:hover {
+    color: #ff0000;
+    transform: scale(1.2);
+}
+
+/* Стилизация редактируемых ячеек при фокусе */
+.reg-table td[contenteditable="true"]:focus {
+    outline: 2px solid var(--accent);
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+}
+
+
 
 /* Профиль и Отчеты */
 .profile-card, .report-item { width: 400px; text-align: center; margin-bottom: 15px; }

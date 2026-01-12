@@ -48,34 +48,34 @@
         <nav class="sidebar__nav">
             <div class="nav-item" data-target="profile">
                 <div class="nav-icon icon-blue" style="background: #D1E4F8; color: #4A90E2;"><i class="fa-solid fa-user"></i></div>
-                <div class="nav-label">Профиль</div>
+                <div class="nav-label" data-i18n="menu_profile">Профиль</div>
             </div>
 
             <div class="nav-item active" data-target="dashboard">
                 <div class="nav-icon"><i class="fa-solid fa-folder"></i></div>
-                <div class="nav-label">Журнал ведения дел</div>
+                <div class="nav-label" data-i18n="menu_dashboard">Журнал ведения дел</div>
             </div>
 
             <div class="nav-item" data-target="registration">
                 <div class="nav-icon"><i class="fa-solid fa-table-cells-large"></i></div>
-                <div class="nav-label">Журнал регистрации</div>
+                <div class="nav-label" data-i18n="menu_registration">Журнал регистрации</div>
             </div>
 
             <div class="nav-item" data-target="reports">
                 <div class="nav-icon icon-green"><i class="fa-solid fa-chart-column"></i></div>
-                <div class="nav-label">Отчеты</div>
+                <div class="nav-label" data-i18n="menu_reports">Отчеты</div>
             </div>
 
             <div class="nav-item" data-target="settings">
                 <div class="nav-icon icon-grey"><i class="fa-solid fa-gear"></i></div>
-                <div class="nav-label">Настройки</div>
+                <div class="nav-label" data-i18n="menu_settings">Настройки</div>
             </div>
         </nav>
 
         <!-- FOOTER (SIDEBAR FOOTER) -->
         <footer class="sidebar__footer">
             <div class="nav-item sos-btn">SOS</div>
-            <div class="nav-label">Помощь</div>
+            <div class="nav-label" data-i18n="menu_profile">Помощь</div>
         </footer>
     </aside>
 
@@ -249,14 +249,15 @@
                     <table class="reg-table" id="reg-table">
                         <thead>
                             <tr>
-                                <th style="width:50px">N</th>
-                                <th>Рег. номер</th>
+                                <th style="width:40px">N</th>
+                                <th style="width:100px">Рег. номер</th>
                                 <th>Предмет</th>
-                                <th>Дата</th>
+                                <th style="width:110px">Дата</th>
                                 <th>ФИО доверителя</th>
                                 <th>ФИО адвоката</th>
                                 <th>Исполнение</th>
                                 <th>Ордера</th>
+                                <th style="width:50px"></th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -305,40 +306,64 @@
             <div class="center-content column-gap">
                 <article class="card-box report-item">
                     <div class="report-icon"><i class="fa-solid fa-file-chart-column"></i></div>
-                    <div class="report-info"><h3>Годовой отчет</h3></div>
-                    <button class="btn-primary">Скачать</button>
                 </article>
             </div>
         </section>
 
         <!-- SECTION: SETTINGS -->
         <section id="view-settings" class="view-section hidden">
-            <header class="view-header">
-                <h1><span>Логотип</span> | Настройки</h1>
-            </header>
-            <div class="card-box settings-container">
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <h3>Темная тема</h3>
-                        <p>Переключить интерфейс в ночной режим</p>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="theme-toggle">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                <div class="setting-item">
-                    <div class="setting-info">
-                        <h3>Язык</h3>
-                        <p>Язык интерфейса системы</p>
-                    </div>
-                    <select class="select-input">
-                        <option>Русский</option>
-                        <option>English</option>
-                    </select>
-                </div>
+    <header class="view-header">
+        <h1><span>Логотип</span> | <span data-i18n="settings_title">Настройки</span></h1>
+    </header>
+    <div class="card-box settings-container">
+        
+        <!-- Темная тема -->
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 data-i18n="setting_theme_title">Темная тема</h3>
+                <p data-i18n="setting_theme_desc">Переключить интерфейс в ночной режим</p>
             </div>
-        </section>
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <!-- Язык -->
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 data-i18n="setting_lang_title">Язык</h3>
+                <p data-i18n="setting_lang_desc">Язык интерфейса системы</p>
+            </div>
+            <select class="select-input" id="lang-select">
+                <option value="ru">Русский</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <!-- Размер шрифта -->
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 data-i18n="setting_font_title">Размер шрифта</h3>
+                <p data-i18n="setting_font_desc">Увеличить или уменьшить текст</p>
+            </div>
+            <div class="font-controls">
+                <button class="btn-primary" id="font-dec">—</button>
+                <span id="font-size-value">16px</span>
+                <button class="btn-primary" id="font-inc">+</button>
+            </div>
+        </div>
+
+        <!-- Сброс данных -->
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 data-i18n="setting_reset_title">Очистить данные</h3>
+                <p data-i18n="setting_reset_desc">Удалить все записи из таблиц</p>
+            </div>
+            <button class="btn-primary" id="btn-reset-data" style="background: #ff4d4d;" data-i18n="btn_reset">Сброс</button>
+        </div>
+    </div>
+</section>
 
     </main>
 
