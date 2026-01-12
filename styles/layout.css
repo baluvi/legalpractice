@@ -18,15 +18,9 @@
 .nav-item:hover, .nav-item.active { opacity: 1; }
 .nav-icon { width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: calc(22px * var(--font-scale)); margin-bottom: 5px; color: var(--text-muted); transition: 0.3s; }
 .nav-item.active .nav-icon { background-color: var(--icon-active); color: var(--text-inverse); box-shadow: 0 4px 10px var(--shadow-modal); }
-<<<<<<< HEAD
-.icon-blue { color: var(--nav-icon-blue); } .icon-green { color: var(--text-muted); } .icon-grey { color: var(--nav-icon-grey); }
-.nav-label { font-size: 10px; color: var(--text-muted); line-height: 1.2; max-width: 80px; }
-.sos-btn { background-color: var(--danger); color: var(--text-inverse); width: 45px; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; }
-=======
-.icon-blue { color: var(--nav-icon-blue); } .icon-green { color: var(--nav-icon-green); } .icon-grey { color: var(--nav-icon-grey); }
+.icon-blue { color: var(--nav-icon-blue); } .icon-green { color: var(--nav-icon-grey); } .icon-grey { color: var(--nav-icon-grey); }
 .nav-label { font-size: calc(10px * var(--font-scale)); color: var(--text-muted); line-height: 1.2; max-width: 80px; }
 .sos-btn { background-color: var(--danger); color: var(--text-inverse); width: 45px; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: calc(12px * var(--font-scale)); }
->>>>>>> 83f63348acd910bc2ad8262cf84cebbf814a123a
 
 /* MAIN CONTENT */
 .main-content { 
