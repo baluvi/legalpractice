@@ -1,5 +1,7 @@
 /* ЦВЕТОВАЯ ПАЛИТРА И ТЕМЫ */
 :root {
+
+    --font-scale: 1;
     /* --- Основные фоны --- */
     --bg-main: #fceef5;
     --bg-sidebar: #ECDDE6;
