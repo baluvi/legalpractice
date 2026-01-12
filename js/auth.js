@@ -51,7 +51,7 @@ App.Auth = {
         // Маленькая анимация успеха
         const btn = this.form.querySelector('button');
         btn.innerText = 'Готово!';
-        btn.style.background = '#50C878';
+        btn.style.background = 'var(--success)';
 
         setTimeout(() => {
             this.showApp();

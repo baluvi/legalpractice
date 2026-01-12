@@ -1,56 +1,83 @@
 /* ЦВЕТОВАЯ ПАЛИТРА И ТЕМЫ */
 :root {
-    /* Theme: Light */
+    /* --- Основные фоны --- */
     --bg-main: #fceef5;
     --bg-sidebar: #ECDDE6;
     --bg-card: #ffffff;
     --bg-card-dark: #4A3B4E;
     --bg-input: #f9f9f9;
-    
+    --bg-overlay: rgba(0, 0, 0, 0.5);
+    --bg-editable-focus: rgba(255, 255, 255, 0.05);
+
+    /* --- Текст --- */
     --text-main: #333333;
     --text-muted: #666666;
     --text-inverse: #ffffff;
     
+    /* --- Акценты и Кнопки --- */
     --accent: #007bff;
     --accent-bg: #E3F2FD;
-    
-    --border: #ddd;
-    --shadow: rgba(0,0,0,0.05);
-    
-    --icon-active: #6A5B75;
     --calendar-highlight: #ba68c8;
+    --icon-active: #6A5B75;
+    
+    /* --- Функциональные цвета --- */
+    --success: #50C878;
+    --danger: #ff5252;
+    --danger-hover: #ff0000;
+    --danger-soft: rgba(255, 82, 82, 0.1);
+    --border: #ddd;
+    --shadow: rgba(0, 0, 0, 0.05);
+    --shadow-modal: rgba(0, 0, 0, 0.2);
 
-    --main-font-size: 16px; /* Базовый размер */
-}
+    /* --- Цвета иконок навигации --- */
+    --nav-icon-blue: #4A90E2;
+    --nav-icon-blue-bg: #D1E4F8;
+    --nav-icon-green: #50C878;
+    --nav-icon-grey: #777;
 
-html {
-    font-size: var(--main-font-size);
-}
+    /* --- Статусы (BG / Text / Border) --- */
+    --status-active-bg: #e3f2fd;
+    --status-active-text: #1976d2;
+    --status-active-border: #bbdefb;
 
-body {
-    /* Теперь все шрифты, если они заданы в rem или не имеют жесткой фиксации в px, 
-       будут масштабироваться от html */
-    font-size: 1rem; 
+    --status-frozen-bg: #e0f7fa;
+    --status-frozen-text: #006064;
+    --status-frozen-border: #b2ebf2;
+
+    --status-archive-bg: #eeeeee;
+    --status-archive-text: #616161;
+    --status-archive-border: #e0e0e0;
+
+    --status-appeal-bg: #fff3e0;
+    --status-appeal-text: #e65100;
+    --status-appeal-border: #ffe0b2;
+
+    --main-font-size: 16px;
 }
 
 body.dark-mode {
-    /* Theme: Dark */
     --bg-main: #1e1e2e;
     --bg-sidebar: #25253a;
     --bg-card: #2b2b40;
     --bg-card-dark: #3a3a55;
     --bg-input: #36364f;
-    
+    --bg-overlay: rgba(0, 0, 0, 0.7);
+
     --text-main: #e0e0e0;
     --text-muted: #a0a0a0;
     --text-inverse: #e0e0e0;
     
     --accent: #64b5f6;
     --accent-bg: #3b4b60;
+    --calendar-highlight: #64b5f6;
+    --icon-active: #79708a;
     
     --border: #444;
-    --shadow: rgba(0,0,0,0.3);
+    --shadow: rgba(0, 0, 0, 0.3);
     
-    --icon-active: #79708a;
-    --calendar-highlight: #64b5f6;
+    /* В темной теме можно оставить те же или приглушить */
+    --status-active-bg: #1a2a3a;
+    --status-frozen-bg: #152d2e;
+    --status-archive-bg: #2d2d2d;
+    --status-appeal-bg: #332b1e;
 }

@@ -17,10 +17,10 @@
 .nav-item { display: flex; flex-direction: column; align-items: center; margin-bottom: 20px; text-align: center; cursor: pointer; opacity: 0.7; transition: 0.3s; }
 .nav-item:hover, .nav-item.active { opacity: 1; }
 .nav-icon { width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 5px; color: var(--text-muted); transition: 0.3s; }
-.nav-item.active .nav-icon { background-color: var(--icon-active); color: var(--text-inverse); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
-.icon-blue { color: #4A90E2; } .icon-green { color: #50C878; } .icon-grey { color: #777; }
+.nav-item.active .nav-icon { background-color: var(--icon-active); color: var(--text-inverse); box-shadow: 0 4px 10px var(--shadow-modal); }
+.icon-blue { color: var(--nav-icon-blue); } .icon-green { color: var(--nav-icon-green); } .icon-grey { color: var(--nav-icon-grey); }
 .nav-label { font-size: 10px; color: var(--text-muted); line-height: 1.2; max-width: 80px; }
-.sos-btn { background-color: #FF5252; color: white; width: 45px; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; }
+.sos-btn { background-color: var(--danger); color: var(--text-inverse); width: 45px; height: 45px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; }
 
 /* MAIN CONTENT */
 .main-content { 
@@ -164,7 +164,7 @@
 }
 
 /* Цвета для разных статусов */
-.status-active { background-color: #e3f2fd; color: #1976d2; border: 1px solid #bbdefb; }      /* Текущее - Синий */
-.status-frozen { background-color: #e0f7fa; color: #006064; border: 1px solid #b2ebf2; }      /* Заморожено - Бирюзовый */
-.status-archive { background-color: #eeeeee; color: #616161; border: 1px solid #e0e0e0; }     /* Архивное - Серый */
-.status-appeal { background-color: #fff3e0; color: #e65100; border: 1px solid #ffe0b2; }      /* Обжалуется - Оранжевый */
+.status-active { background-color: var(--status-active-bg); color: var(--status-active-text); border: 1px solid var(--status-active-border); } /* Текущее - Синий */
+.status-frozen { background-color: var(--status-frozen-bg); color: var(--status-frozen-text); border: 1px solid var(--status-frozen-border); } /* Заморожено - Бирюзовый */
+.status-archive { background-color: var(--status-archive-bg); color: var(--status-archive-text); border: 1px solid var(--status-archive-border); }  /* Архивное - Серый */
+.status-appeal { background-color: var(--status-appeal-bg); color: var(--status-appeal-text); border: 1px solid var(--status-appeal-border); }  /* Обжалуется - Оранжевый */

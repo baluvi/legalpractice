@@ -105,9 +105,9 @@
 /* Выбранный день */
 .day-number.selected { 
     background-color: var(--calendar-highlight) !important; 
-    color: white !important; 
+    color: var(--text-inverse) !important; 
     font-weight: bold; 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px var(--shadow-modal);
 }
 
 /* Стили для деталей view (маленький календарь) */
@@ -217,5 +217,5 @@
 }
 
 .day-number.selected.has-event::after {
-    background-color: #fff; /* Белая точка на выбранном фоне */
+    background-color: var(--text-inverse); /* Белая точка на выбранном фоне */
 }

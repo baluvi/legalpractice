@@ -41,7 +41,7 @@
                     <input type="password" id="reg-password-confirm" class="input-field" placeholder="••••••••" required>
                 </div>
                 
-                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">Зарегистрироваться</button>
+                <button type="submit" class="btn-primary w-100 mt-10">Зарегистрироваться</button>
                 
                 <div class="auth-footer">
                     <button type="button" class="btn-secondary-disabled" disabled>Уже есть аккаунт? Войти</button>
@@ -56,7 +56,7 @@
         <!-- NAVIGATION (NAV) -->
         <nav class="sidebar__nav">
             <div class="nav-item" data-target="profile">
-                <div class="nav-icon icon-blue" style="background: #D1E4F8; color: #4A90E2;"><i class="fa-solid fa-user"></i></div>
+                 <div class="nav-icon icon-profile"><i class="fa-solid fa-user"></i></div>
                 <div class="nav-label" data-i18n="menu_profile">Профиль</div>
             </div>
 
@@ -94,7 +94,7 @@
         <!-- DASHBOARD SECTION -->
         <section id="view-dashboard" class="view-section">
             <header class="view-header">
-                <h1><span>Логотип</span> | Журнал ведения дел</h1>
+                <h1><div class="app-logo"><i class="fa-solid fa-scale-balanced"></i></div> | Журнал ведения дел</h1>
             </header>
 
             <!-- НОВЫЙ КОНТЕЙНЕР-ОБЕРТКА ДЛЯ КАЛЕНДАРЯ И СОБЫТИЙ -->
@@ -118,7 +118,7 @@
                     <div class="events-header">
                         <div class="header-text">
                             <h3>События</h3>
-                            <span class="js-date-label" style="font-size: 11px; color: var(--text-muted);">Сегодня</span>
+                            <span class="js-date-label date-sublabel">Сегодня</span>
                         </div>
                         <!-- ДОБАВЛЕН КЛАСС js-btn-add-event -->
                         <button class="btn-icon-add js-btn-add-event" title="Добавить заметку">
@@ -251,7 +251,7 @@
         <!-- SECTION: REGISTRATION -->
         <section id="view-registration" class="view-section hidden">
             <header class="view-header">
-                <h1><span>Логотип</span> | Журнал регистрации</h1>
+                <h1><div class="app-logo"><i class="fa-solid fa-scale-balanced"></i></div> | Журнал регистрации</h1>
             </header>
             <div class="registration-wrapper">
                 <div class="table-scroll-container">
@@ -281,7 +281,7 @@
         <!-- SECTION: PROFILE -->
         <section id="view-profile" class="view-section hidden">
             <header class="view-header">
-                <h1><span>Логотип</span> | Профиль</h1>
+                <h1><div class="app-logo"><i class="fa-solid fa-scale-balanced"></i></div> | Профиль</h1>
             </header>
             <div class="center-content">
                 <article class="card-box profile-card">
@@ -289,14 +289,14 @@
                     <h2 id="profile-display-name">Загрузка...</h2>
                     <p id="profile-display-spec" class="text-muted">Адвокат</p>
                     
-                    <div class="profile-details" style="text-align: left; margin: 20px 0; border-top: 1px solid var(--border); padding-top: 20px;">
-                        <div class="info-block" style="margin-top: 10px;">
-                            <label style="font-size: 11px; color: var(--text-muted);">Email:</label>
-                            <p id="profile-display-email" style="font-weight: 500;">-</p>
+                    <div class="profile-info-group">
+                        <div class="info-block mt-10">
+                            <label class="profile-info-label">Email:</label>
+                            <p id="profile-display-email" class="profile-info-value">-</p>
                         </div>
                     </div>
 
-                    <button id="btn-reset-system" class="btn-danger" style="width: 100%; background-color: #ff52521a; color: #ff5252; border: 1px solid #ff5252;">
+                    <button id="btn-reset-system" class="btn-system-reset">
                         <i class="fa-solid fa-trash-can"></i> Сбросить все данные
                     </button>
                 </article>
@@ -306,7 +306,7 @@
         <!-- SECTION: REPORTS -->
         <section id="view-reports" class="view-section hidden">
             <header class="view-header">
-                <h1><span>Логотип</span> | Отчеты</h1>
+                <h1><div class="app-logo"><i class="fa-solid fa-scale-balanced"></i></div> | Отчеты</h1>
             </header>
             <div class="center-content column-gap">
                 <article class="card-box report-item">
@@ -318,7 +318,7 @@
         <!-- SECTION: SETTINGS -->
         <section id="view-settings" class="view-section hidden">
     <header class="view-header">
-        <h1><span>Логотип</span> | <span data-i18n="settings_title">Настройки</span></h1>
+        <h1><div class="app-logo"><i class="fa-solid fa-scale-balanced"></i></div> | <span data-i18n="settings_title">Настройки</span></h1>
     </header>
     <div class="card-box settings-container">
         
@@ -365,7 +365,7 @@
                 <h3 data-i18n="setting_reset_title">Очистить данные</h3>
                 <p data-i18n="setting_reset_desc">Удалить все записи из таблиц</p>
             </div>
-            <button class="btn-primary" id="btn-reset-data" style="background: #ff4d4d;" data-i18n="btn_reset">Сброс</button>
+            <button class="btn-primary" id="btn-reset-data" style="background: var(--danger);" data-i18n="btn_reset">Сброс</button>
         </div>
     </div>
 </section>

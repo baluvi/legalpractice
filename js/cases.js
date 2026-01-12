@@ -140,7 +140,8 @@ App.Cases = {
             // Используем data.title, который берется из currentCase (синхронизировано)
             headerTitle.innerHTML = `
                 <i class="fa-solid fa-arrow-left btn-back" id="btn-back-details" title="Назад"></i> 
-                <span>Логотип | Журнал ведения дел</span> | Дело №${data.number} - ${data.title}
+                <div class="app-logo"><i class="fa-solid fa-scale-balanced"></i></div>
+                <span> Журнал ведения дел</span> | Дело №${data.number} - ${data.title}
             `;
             
             const backBtn = document.getElementById('btn-back-details');
@@ -217,7 +218,7 @@ App.Cases = {
         this.ordersListContainer.innerHTML = '';
         this.tempOrders.forEach((order, index) => {
             const chip = document.createElement('div');
-            chip.style.cssText = "background: #eee; padding: 5px 10px; border-radius: 15px; font-size: 12px; display: flex; align-items: center; gap: 5px;";
+            chip.className = 'order-chip';
             chip.innerHTML = `
                 ${order} 
                 <i class="fa-solid fa-times" style="cursor: pointer; color: #666;" data-idx="${index}"></i>
