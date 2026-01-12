@@ -17,7 +17,20 @@
 .btn-back:hover { color: var(--text-main); }
 
 /* Элементы списка дел */
-.cases-container { background-color: var(--bg-sidebar); border-radius: 20px 20px 0 0; padding: 25px 30px; width: 100%; max-height: 250px; overflow-y: auto; margin-bottom: -30px; }
+.cases-container {
+    background-color: var(--bg-sidebar);
+    border-radius: 20px 20px 0 0;
+    padding: 25px 30px;
+    width: 100%;
+    
+    /* ВАЖНЫЕ ИЗМЕНЕНИЯ: */
+    flex-grow: 1;       /* Растянуться на всю высоту родителя (.content-wrapper) */
+    height: 100%;       /* Заполнить контейнер */
+    overflow-y: auto;   /* Скролл только внутри списка */
+    max-height: none;   /* Убираем старое ограничение */
+    margin-bottom: 0;
+}
+
 .case-card { background-color: var(--bg-card-dark); color: var(--text-inverse); border-radius: 15px; padding: 20px 30px; display: flex; justify-content: space-between; margin-bottom: 15px; cursor: pointer; transition: 0.2s; align-items: center; }
 .case-card:hover { transform: scale(1.01); }
 .case-info { display: flex; align-items: center; gap: 20px; }
@@ -63,3 +76,217 @@
 .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
 input:checked + .slider { background-color: var(--accent); }
 input:checked + .slider:before { transform: translateX(26px); }
+/* --- МОДАЛЬНОЕ ОКНО --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+    display: flex !important; /* Чтобы сохранить флекс при скрытии, но убрать видимость */
+}
+
+.modal-content {
+    background: var(--bg-card);
+    width: 350px;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transform: scale(1);
+    transition: transform 0.3s;
+}
+
+.modal-overlay.hidden .modal-content {
+    transform: scale(0.9);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.modal-header h3 { color: var(--text-main); }
+.close-modal { cursor: pointer; font-size: 18px; color: var(--text-muted); }
+
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-size: 12px; margin-bottom: 5px; color: var(--text-muted); }
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-size: 14px;
+    resize: none;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-danger {
+    background-color: #ff5252;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+/* Кнопки действий внутри списка событий */
+.event-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transition: 0.2s;
+}
+.event-item:hover .event-actions { opacity: 1; }
+.action-icon { font-size: 12px; cursor: pointer; color: var(--text-muted); }
+.action-icon:hover { color: var(--accent); }
+.action-icon.delete:hover { color: #ff5252; }
+/* --- КОНТЕЙНЕР ФАЙЛОВ (GRID 12 КОЛОНОК) --- */
+.files-container {
+    background-color: var(--bg-sidebar);
+    border-radius: 20px 20px 0 0;
+    padding: 25px 20px;
+    
+    /* Ограничения высоты для вертикального скролла */
+    height: 100%;
+    max-height: 250px;
+    overflow-y: auto; 
+    overflow-x: hidden; /* Запрещаем горизонтальную прокрутку */
+    
+    /* ВАЖНО: Фиксируем ширину контейнера, чтобы он не растягивался бесконечно */
+    width: 100%;
+    box-sizing: border-box;
+
+    /* СЕТКА */
+    display: grid;
+    
+    /* 
+       ИСПРАВЛЕНИЕ: 
+       Вместо 1fr используем minmax(0, 1fr). 
+       Это заставляет колонку игнорировать длину текста внутри 
+       и строго делить доступное место на 12 частей.
+    */
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    
+    gap: 10px; 
+    align-content: start;
+    margin-bottom: -30px;
+}
+
+/* Скроллбар */
+.files-container::-webkit-scrollbar { width: 6px; }
+.files-container::-webkit-scrollbar-track { background: transparent; }
+.files-container::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* --- КАРТОЧКА ФАЙЛА --- */
+.file-folder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    /* Файл занимает 100% своей ячейки (1/12 экрана) */
+    width: 100%; 
+    
+    cursor: pointer;
+    transition: transform 0.2s;
+    position: relative;
+    text-align: center;
+    padding: 10px 2px;
+    
+    /* Скрываем всё, что вылезает за границы ячейки */
+    overflow: hidden; 
+}
+
+
+.file-folder:hover {
+    transform: translateY(-5px);
+    /* При наведении разрешаем выход за границы, чтобы показать полное имя */
+    overflow: visible; 
+    z-index: 100;
+}
+
+/* --- ИКОНКА --- */
+.file-folder i:not(.remove-file-icon) {
+    font-size: 32px; /* Чуть уменьшил иконку, чтобы 12 штук смотрелись гармоничнее */
+    color: var(--text-main);
+    margin-bottom: 5px;
+}
+
+/* --- ТЕКСТ (НАЗВАНИЕ ФАЙЛА) --- */
+.file-name {
+    font-size: 10px; /* Уменьшаем шрифт, так как колонок много */
+    color: var(--text-main);
+    width: 100%;
+    
+    /* Жесткая обрезка текста */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+/* Всплывающее полное имя при наведении */
+.file-folder:hover .file-name {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: auto;
+    min-width: 120px; /* Минимальная ширина всплывашки */
+    max-width: 200px;
+    
+    white-space: normal;
+    word-break: break-word;
+    
+    background: var(--bg-card); /* Фон как у карточки */
+    border: 1px solid var(--border);
+    padding: 5px 8px;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 101;
+}
+
+/* --- КРЕСТИК УДАЛЕНИЯ --- */
+.remove-file-icon {
+    position: absolute;
+    top: -5px;
+    right: 5px; /* Сдвинут немного вправо-вверх */
+    
+    font-size: 14px;
+    color: #ff5252; /* Красный цвет */
+    background: transparent; /* УБРАН БЕЛЫЙ ФОН */
+    
+    opacity: 0; /* Скрыт по умолчанию */
+    transition: opacity 0.2s, transform 0.2s;
+    padding: 5px; /* Увеличиваем область клика */
+}
+
+/* Показываем крестик при наведении на файл */
+.file-folder:hover .remove-file-icon {
+    opacity: 1;
+}
+
+.remove-file-icon:hover {
+    transform: scale(1.2); /* Легкое увеличение при наведении на сам крестик */
+}

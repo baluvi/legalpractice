@@ -51,29 +51,47 @@
     <!-- MAIN CONTENT (MAIN) -->
     <main class="main-content">
         
-        <!-- SECTION: DASHBOARD -->
+        <!-- DASHBOARD SECTION -->
         <section id="view-dashboard" class="view-section">
             <header class="view-header">
                 <h1><span>Логотип</span> | Журнал ведения дел</h1>
             </header>
 
-            <div class="calendar-widget">
-                <div class="calendar-header">
-                    <div class="calendar-title js-month-label"></div>
-                    <div class="calendar-controls">
-                        <i class="fa-solid fa-chevron-left js-prev-month"></i>
-                        <i class="fa-solid fa-chevron-right js-next-month"></i>
+            <!-- НОВЫЙ КОНТЕЙНЕР-ОБЕРТКА ДЛЯ КАЛЕНДАРЯ И СОБЫТИЙ -->
+            <div class="dashboard-grid-wrapper">
+                
+                <!-- БЛОК 1: КАЛЕНДАРЬ (75%) -->
+                <div class="calendar-widget">
+                    <div class="calendar-header">
+                        <div class="calendar-title js-month-label"></div>
+                        <div class="calendar-controls">
+                            <i class="fa-solid fa-chevron-left js-prev-month"></i>
+                            <i class="fa-solid fa-chevron-right js-next-month"></i>
+                        </div>
                     </div>
+                    <div class="calendar-grid js-calendar-grid"></div>
+                    <!-- Строка footer удалена отсюда -->
                 </div>
-                <div class="calendar-grid js-calendar-grid">
-                    <div class="day-name">Sun</div><div class="day-name">Mon</div><div class="day-name">Tue</div>
-                    <div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div>
-                    <div class="day-name">Sat</div>
-                </div>
-                <div class="calendar-footer">
-                    <div class="event-chip">Консультация Иванов А. <span class="time-badge">9:41 AM</span></div>
-                    <div class="event-chip">Заседание по делу №245 <span class="time-badge">2:30 PM</span></div>
-                </div>
+
+                <!-- БЛОК 2: СОБЫТИЯ СПРАВА (25%) -->
+                <aside class="events-widget card-box">
+                    <div class="events-header">
+                        <div class="header-text">
+                            <h3>События</h3>
+                            <span class="js-date-label" style="font-size: 11px; color: var(--text-muted);">Сегодня</span>
+                        </div>
+                        <!-- ДОБАВЛЕН КЛАСС js-btn-add-event -->
+                        <button class="btn-icon-add js-btn-add-event" title="Добавить заметку">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Сюда JS будет рендерить список -->
+                    <div id="events-list-container" class="events-list">
+                        <!-- Список заполняется динамически -->
+                    </div>
+                </aside>
+
             </div>
 
             <div class="content-wrapper">
@@ -86,11 +104,10 @@
                     </div>
                 </header>
                 <div id="cases-list" class="cases-container">
-                    <!-- Карточка примера -->
                     <article class="case-card">
                         <div class="case-info">
                             <i class="fa-solid fa-folder folder-icon-large"></i>
-                            <div class="case-title">Дело №245 - Иванов vs ООО <br> "Росхозмета"</div>
+                            <div class="case-title">Дело №245 - Иванов vs ООО "Росхозмета"</div>
                         </div>
                         <div class="case-menu"><i class="fa-solid fa-bars"></i></div>
                     </article>
@@ -103,54 +120,93 @@
             <header class="view-header">
                 <h1>
                     <i class="fa-solid fa-arrow-left btn-back" id="btn-back-details" title="Назад"></i> 
-                    <span>Логотип | Журнал...</span> | Дело №245
+                    <span>Логотип | Журнал | </span>  Дело №245
                 </h1>
             </header>
 
+            <!-- 3 КОЛОНКИ: Календарь | Заметки | Инфо -->
             <div class="split-layout">
+                
+                <!-- 1. КАЛЕНДАРЬ (40-50%) -->
                 <div class="calendar-widget">
                     <div class="calendar-header">
                         <div class="calendar-title js-month-label"></div>
-                        <div class="calendar-controls"></div>
+                        <div class="calendar-controls">
+                            <!-- Можно убрать управление месяцами в деталях, если нужно только смотреть -->
+                        </div>
                     </div>
-                    <div class="calendar-grid js-calendar-grid">
-                        <div class="day-name">Sun</div><div class="day-name">Mon</div><div class="day-name">Tue</div>
-                        <div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div>
-                        <div class="day-name">Sat</div>
-                    </div>
+                    <div class="calendar-grid js-calendar-grid"></div>
                 </div>
 
-                <article class="info-panel">
-                    <div class="info-block">
-                        <h3>Трекинг дела <i class="fa-solid fa-bars"></i></h3>
-                        <a href="#" class="info-link">www.sudact.ru/kem/len_ar/245...</a>
+                <!-- 2. ЗАМЕТКИ (25%) - ТОТ ЖЕ ВИДЖЕТ -->
+                <aside class="events-widget card-box">
+                    <div class="events-header">
+                        <div class="header-text">
+                            <h3>Заметки</h3>
+                            <span class="js-date-label" style="font-size: 11px; color: var(--text-muted);">Сегодня</span>
+                        </div>
+                        <!-- Используем класс для кнопки, чтобы JS ловил клик везде -->
+                        <button class="btn-icon-add js-btn-add-event" title="Добавить заметку">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
                     </div>
+                    <!-- Класс js-events-list нужен для синхронизации -->
+                    <div class="events-list js-events-list"></div>
+                </aside>
+
+                <!-- 3. ИНФОРМАЦИЯ (25%) -->
+                <article class="info-panel" id="case-info-panel">
+                    <!-- НОВЫЙ БЛОК: СТАТУС (В самом начале) -->
                     <div class="info-block">
-                        <h3>Ордера по делу <i class="fa-solid fa-bars"></i></h3>
-                        <div class="order-number">86734-Д7467</div>
+                        <h3>
+                            Состояние дела
+                            <!-- Кнопка редактирования переехала сюда -->
+                            <i class="fa-solid fa-pen panel-edit-btn" id="btn-edit-case-info"></i>
+                        </h3>
+                        <div id="info-status-container">
+                            <!-- Сюда JS вставит бейдж -->
+                        </div>
                     </div>
+
                     <div class="info-block">
-                        <h3>Информация <i class="fa-solid fa-plus"></i></h3>
-                        <p class="info-text">тел Иванов +7 984 344 34-44.<br>адр прокур ул. Ленина, 45, 203</p>
+                        <h3>Трекинг дела</h3> <!-- Карандаш отсюда убрали -->
+                        <div id="info-tracking-container">
+                            <span class="text-muted">Нет ссылки</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-block">
+                        <h3>Ордера по делу</h3>
+                        <div id="info-orders-container"></div>
+                    </div>
+                    
+                    <div class="info-block">
+                        <h3>Информация</h3>
+                        <p class="info-text" id="info-contacts-text">Нет информации</p>
                     </div>
                 </article>
             </div>
 
+            <!-- СЕКЦИЯ ФАЙЛОВ -->
             <div class="files-section">
                 <header class="section-header">
                     <div class="section-title">Приложения, файлы по делу</div>
                     <div class="section-controls">
                         <span>последние</span>
                         <i class="fa-solid fa-bars btn-icon"></i>
-                        <i class="fa-solid fa-folder-plus btn-icon-add"></i>
+                        <!-- Кнопка вызывает скрытый input -->
+                        <i class="fa-solid fa-folder-plus btn-icon-add" id="btn-upload-file"></i>
+                        <input type="file" id="file-input" hidden multiple>
                     </div>
                 </header>
-                <div class="files-container">
-                    <div class="file-folder"><i class="fa-regular fa-folder"></i><span>Данные<br>Иванова</span></div>
-                    <div class="file-folder"><i class="fa-regular fa-folder"></i><span>Судебные</span></div>
+                <!-- Контейнер для файлов (слева направо) -->
+                <div id="files-list-container" class="files-container">
+                    <!-- Файлы будут добавляться сюда через JS -->
                 </div>
             </div>
         </section>
+
+
 
         <!-- SECTION: REGISTRATION -->
         <section id="view-registration" class="view-section hidden">
@@ -249,5 +305,90 @@
     <script src="js/registration.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/main.js"></script>
+    <!-- MODAL FOR EVENTS -->
+    <div id="event-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Новая заметка</h3>
+                <i class="fa-solid fa-times close-modal" id="btn-close-modal"></i>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="event-id">
+                <div class="form-group">
+                    <label>Время</label>
+                    <input type="time" id="event-time" class="input-field">
+                </div>
+                <div class="form-group">
+                    <label>Описание</label>
+                    <textarea id="event-desc" class="input-field" rows="3" placeholder="Что запланировано?"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-event" class="btn-danger hidden">Удалить</button>
+                <button id="btn-save-event" class="btn-primary">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Добавляем подключение нового скрипта -->
+    <script src="js/events.js"></script>
+    <script src="js/files.js"></script>
+    <div id="case-edit-modal" class="modal-overlay hidden">
+        <div class="modal-content" style="width: 500px;">
+            <div class="modal-header">
+                <h3>Редактирование дела</h3>
+                <i class="fa-solid fa-times close-modal" id="close-case-modal"></i>
+            </div>
+            <div class="modal-body">
+                <!-- Номер и Название -->
+                <div class="form-group" style="display: flex; gap: 10px;">
+                    <div style="flex: 1;">
+                        <label>Номер дела</label>
+                        <input type="text" id="edit-case-number" class="input-field">
+                    </div>
+                    <div style="flex: 3;">
+                        <label>Название дела</label>
+                        <input type="text" id="edit-case-title" class="input-field">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Состояние дела</label>
+                    <select id="edit-case-status" class="input-field">
+                        <option value="Текущее">Текущее</option>
+                        <option value="Заморожено">Заморожено</option>
+                        <option value="Архивное">Архивное</option>
+                        <option value="Обжалуется">Обжалуется</option>
+                    </select>
+                </div>
+
+                <!-- Трекинг -->
+                <div class="form-group">
+                    <label>Ссылка на трекинг (Sudact/Gosuslugi)</label>
+                    <input type="text" id="edit-case-link" class="input-field" placeholder="https://...">
+                </div>
+
+                <!-- Ордера (Динамический список) -->
+                <div class="form-group">
+                    <label>Ордера</label>
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <input type="text" id="new-order-input" class="input-field" placeholder="Номер ордера">
+                        <button id="btn-add-order" class="btn-primary" style="padding: 5px 15px;">+</button>
+                    </div>
+                    <div id="edit-orders-list" style="display: flex; flex-wrap: wrap; gap: 5px;">
+                        <!-- Чипсы ордеров будут здесь -->
+                    </div>
+                </div>
+
+                <!-- Контакты -->
+                <div class="form-group">
+                    <label>Контактная информация / Заметки</label>
+                    <textarea id="edit-case-contacts" class="input-field" rows="4"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-save-case-details" class="btn-primary">Сохранить изменения</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

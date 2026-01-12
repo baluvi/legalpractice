@@ -1,47 +1,221 @@
-/* ВИДЖЕТ КАЛЕНДАРЯ */
+/* ========================================= */
+/* СТИЛИ ВИДЖЕТА КАЛЕНДАРЯ                   */
+/* ========================================= */
+
 .calendar-widget {
     background: var(--bg-card);
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 5px 25px var(--shadow);
-    margin-bottom: 20px;
-    flex-grow: 1;
+    
+    /* Важно для лейаута: */
+    margin-bottom: 0; 
     display: flex;
     flex-direction: column;
-    min-height: 300px;
+    height: 100%;       /* Занимаем всю высоту родителя */
+    min-height: 0;      /* Позволяет сжиматься, если экран маленький */
     transition: background-color 0.3s;
 }
 
-/* Детали view */
-.split-layout .calendar-widget { flex: 2; margin-bottom: 0; min-width: 300px; height: auto; }
+/* --- ШАПКА КАЛЕНДАРЯ --- */
+.calendar-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 10px; 
+    flex-shrink: 0;     /* Шапка не сжимается при уменьшении высоты */
+}
 
-.calendar-header { display: flex; justify-content: space-between; margin-bottom: 15px; align-items: center; flex-shrink: 0; }
-.calendar-title { font-weight: 700; font-size: 16px; color: var(--text-main); }
-.calendar-controls i { margin-left: 15px; color: var(--accent); cursor: pointer; }
+.calendar-title { 
+    font-weight: 700; 
+    font-size: 16px; 
+    color: var(--text-main); 
+}
 
+.calendar-controls i { 
+    margin-left: 15px; 
+    color: var(--accent); 
+    cursor: pointer; 
+    transition: 0.2s;
+}
+
+.calendar-controls i:hover {
+    color: var(--text-main);
+    transform: scale(1.1);
+}
+
+/* --- СЕТКА (GRID) --- */
 .calendar-grid {
     flex-grow: 1;
     display: grid;
+    
+    /* 7 колонок */
     grid-template-columns: repeat(7, 1fr);
+    
+    /* ПЕРВАЯ строка 30px (для Пн, Вт...), остальные делят пространство */
     grid-template-rows: 30px repeat(6, 1fr);
+    
     gap: 6px;
+    height: 100%;
+    min-height: 0;
 }
 
-.day-name { font-size: 11px; color: var(--text-muted); text-transform: uppercase; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+/* --- ЯЧЕЙКИ --- */
+.day-name { 
+    font-size: 11px; 
+    color: var(--text-muted); 
+    text-transform: uppercase; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-weight: 600; 
+}
+
 .day-number {
+    position: relative;
     background-color: var(--bg-input);
     color: var(--text-main);
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: clamp(14px, 1.5vh + 0.5vw, 24px);
+    width: 100%; 
+    height: 100%;       /* Растягиваем на всю ячейку грида */
+    
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    
+    /* Размер шрифта масштабируется между 12px и 20px в зависимости от экрана */
+    font-size: clamp(12px, 2.5vh, 20px); 
+    
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.2s ease;
     border-radius: 12px;
 }
-.day-number:hover:not(:empty) { filter: brightness(0.95); transform: scale(0.95); }
-.day-number:empty { visibility: hidden; pointer-events: none; }
-.day-number.selected { background-color: var(--calendar-highlight) !important; color: white !important; font-weight: bold; }
 
-.calendar-footer { margin-top: 15px; display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
-.event-chip { font-size: 13px; color: var(--text-main); }
-.time-badge { background-color: var(--calendar-highlight) !important; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; color: white !important;; margin-left: 5px; font-weight: bold;}
+.day-number:hover:not(:empty) { 
+    filter: brightness(0.95); 
+    transform: scale(0.95); 
+}
+
+/* Пустые ячейки (начало/конец месяца) */
+.day-number:empty { 
+    visibility: hidden; 
+    pointer-events: none; 
+    background-color: transparent; 
+}
+
+/* Выбранный день */
+.day-number.selected { 
+    background-color: var(--calendar-highlight) !important; 
+    color: white !important; 
+    font-weight: bold; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Стили для деталей view (маленький календарь) */
+.split-layout .calendar-widget { 
+    flex: 2; 
+    margin-bottom: 0; 
+    min-width: 300px; 
+    height: auto; /* В деталях высота авто */
+}
+
+
+/* ========================================= */
+/* СТИЛИ БЛОКА СОБЫТИЙ (ПРАВАЯ КОЛОНКА)      */
+/* ========================================= */
+
+.events-widget {
+    /* Базовые стили карточки наследуются от .card-box в HTML, 
+       но здесь можно уточнить специфику */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Скролл внутри списка, а не виджета */
+}
+
+.events-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.events-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.events-header i {
+    color: var(--calendar-highlight);
+    font-size: 18px;
+}
+
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;   /* Скроллим список, если много событий */
+    padding-right: 5px; /* Отступ для скроллбара */
+}
+
+/* Стилизация скроллбара для списка событий */
+.events-list::-webkit-scrollbar { width: 4px; }
+.events-list::-webkit-scrollbar-track { background: transparent; }
+.events-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+.event-item {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    padding: 12px;
+    background-color: var(--bg-input);
+    border-radius: 12px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.event-item:hover {
+    background-color: var(--accent-bg);
+    transform: translateX(2px);
+}
+
+.event-time {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--calendar-highlight);
+    white-space: nowrap;
+    min-width: 60px;
+}
+
+.event-desc {
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.event-item.empty-slot {
+    background: transparent;
+    border: 1px dashed var(--border);
+    justify-content: center;
+    cursor: default;
+}
+.event-item.empty-slot:hover {
+    background: transparent;
+    transform: none;
+}
+.has-event::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    width: 5px;
+    height: 5px;
+    background-color: var(--calendar-highlight);
+    border-radius: 50%;
+}
+
+.day-number.selected.has-event::after {
+    background-color: #fff; /* Белая точка на выбранном фоне */
+}
