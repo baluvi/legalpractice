@@ -484,3 +484,119 @@ input:checked + .slider:before { transform: translateX(26px); }
 .icon-profile {
     color: var(--text-muted); 
 }
+/* Контейнер для кнопок-переключателей */
+.radio-tile-group {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+/* Скрываем стандартный инпут */
+.radio-tile input[type="radio"] {
+    display: none;
+}
+
+/* Сама кнопка-плитка */
+.radio-tile {
+    flex: 1; /* Кнопки будут равной ширины */
+    cursor: pointer;
+    position: relative;
+    user-select: none; 
+}
+
+.tile-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 10px;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition:
+        background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.2s ease,
+        box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.radio-tile:active .tile-content {
+    transform: scale(0.96); /* Кнопка слегка вжимается */
+}
+
+/* Состояние при наведении */
+.radio-tile:hover .tile-content {
+    border-color: var(--calendar-highlight);
+    background: var(--bg-input);
+    color: var(--text-main);
+}
+
+/* Состояние ВЫБРАНО (через соседний селектор +) */
+.radio-tile input[type="radio"]:checked + .tile-content {
+    background: var(--calendar-highlight);
+    border-color: var(--calendar-highlight);
+    color: white;
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 10px var(--shadow-modal);
+}
+
+/* Дополнительный стиль для вторичных кнопок (внутри организации) */
+.radio-tile-group.secondary .tile-content {
+    padding: 8px 5px;
+    font-size: 12px;
+}
+
+/* Панель уточнения (серая подложка) */
+.auth-sub-panel {
+    background: var(--bg-input);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Анимация для блока ввода ключа */
+/* Базовое состояние скрытого блока (вместо display: none) */
+#join-key-block, 
+#org-sub-options {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    visibility: hidden;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-width: 0; /* Для родительской панели */
+    
+    /* Плавный переход для всех свойств */
+    transition: 
+        max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s ease,
+        margin 0.3s ease,
+        padding 0.3s ease,
+        visibility 0.4s;
+}
+
+/* Состояние, когда блок должен быть ВИДИМ */
+#join-key-block.visible,
+#org-sub-options.visible {
+    max-height: 200px; /* Достаточное значение с запасом */
+    opacity: 1;
+    visibility: visible;
+    margin-top: 15px;
+    /* Если у блока есть границы или паддинги, их нужно вернуть здесь */
+}
+
+/* Специфично для родительской панели организации */
+#org-sub-options.visible {
+    padding: 15px;
+    border: 1px solid var(--border);
+    margin-bottom: 15px;
+}
